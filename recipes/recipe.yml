@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
+name: silverblue.bluebuild
+# description will be included in the image's metadata
+description: Custom SilverBlue OS image.
+
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/ublue-os/silverblue-main
+# latest is also supported if you want new updates ASAP
+image-version: 44 # Released 2026.05
+
+# module configuration, executed in order
+# you can include multiple instances of the same module
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+
+  - type: dnf
+    # repos:
+    #   copr:
+    #     - atim/starship
+    install:
+      packages:
+        - bat
+        - btop
+        - distrobox
+        - rclone
+        - tmux
+        - zsh
+    remove:
+      packages:
+        - firefox # main package
+        - firefox-langpacks # this is a special case of a flatpack dependency
+        - zram-generator-defaults # Disable ZRAM
+
+  - type: default-flatpaks
+    configurations:
+      # - notify: true # Send notification after install/uninstall is finished (true/false)
+      #   scope: system
+      #   # If no repo information is specified, Flathub will be used by default
+      #   install: # system flatpaks we want all users to have and not remove
+      #     - org.mozilla.firefox
+      #     - org.gnome.Loupe
+      - scope: user # Also add Flathub user repo, but no user packages
+        install:
+          - com.mattjakeman.ExtensionManager
+
+  - type: signing # this sets up the proper policy & signing files for signed images to work fully
