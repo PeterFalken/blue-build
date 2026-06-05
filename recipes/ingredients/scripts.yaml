@@ -1,0 +1,4 @@
+type: script
+# Run files/scripts/*.sh
+scripts:
+  - 01-vscode.sh

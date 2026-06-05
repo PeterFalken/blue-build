@@ -1,0 +1,9 @@
+type: kargs
+arch: x86_64 # only inject kernel arguments to these specific OS architectures
+kargs:
+  - zswap.enabled=1
+  - zswap.accept_threshold_percent=80
+  - zswap.compressor=zstd
+  - zswap.max_pool_percent=25
+  - zswap.shrinker_enabled=1
+  - zswap.zpool=zsmalloc

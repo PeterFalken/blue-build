@@ -1,0 +1,9 @@
+---
+type: systemd
+system:
+  disabled:
+    - malcontent-timerd.service
+  enabled:
+    - fstrim.timer
+  masked:
+    - malcontent-timerd.service

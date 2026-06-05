@@ -1,0 +1,5 @@
+---
+type: files
+files:
+  - source: system
+    destination: / # copies files/system/* into image's root /

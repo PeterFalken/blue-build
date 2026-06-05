@@ -1,0 +1,10 @@
+---
+type: default-flatpaks
+configurations:
+  - scope: user
+    install:
+      - com.getpostman.Postman
+      - com.google.Chrome
+      # - com.mattjakeman.ExtensionManager
+      - io.podman_desktop.PodmanDesktop
+      # - org.gnome.Loupe

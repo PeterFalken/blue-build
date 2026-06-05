@@ -1,0 +1,18 @@
+---
+type: dnf
+install:
+  skip-unavailable: true
+  packages:
+    - bat
+    - btop
+    - distrobox
+    - rclone
+    - tmux
+    - zsh
+remove:
+  auto-remove: true
+  packages:
+    - gnome-tour
+    - firefox # main package
+    - firefox-langpacks # this is a special case of a flatpack dependency
+    - zram-generator-defaults # Disable ZRAM
